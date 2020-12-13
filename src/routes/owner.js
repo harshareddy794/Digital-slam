@@ -1,9 +1,12 @@
 import express from "express";
 const router = express.Router();
 
-router.get("/", async(req,res)=>{
-    res.send("Home route")
-});
+import controller from "../controller/owner.js"
+
+
+router.get("/", 
+    controller.createOwner,
+);
 
 
 export default{
