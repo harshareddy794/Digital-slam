@@ -1,8 +1,3 @@
-const express = require("express");
-const app = express();
+import index from "./src/index.js";
 
-const PORT = 3000;
-
-app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
-});
+export default index;
