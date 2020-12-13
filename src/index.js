@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Home route
 app.get("/",async(req,res)=>{
-    res.render()
+    res.render("index")
 });
 
 // Routes configuration
