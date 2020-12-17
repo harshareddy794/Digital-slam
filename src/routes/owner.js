@@ -4,7 +4,8 @@ const router = express.Router();
 import controller from "../controller/owner.js"
 
 
-router.get("/", 
+router.get("/signup",
+    
     controller.createOwner,
 );
 
