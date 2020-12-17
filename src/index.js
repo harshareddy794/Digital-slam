@@ -19,7 +19,7 @@ db.connection();
 import ownerRoutes from "./routes/owner.js";
 
 // Routes configuration
-app.use("/owner",ownerRoutes.router);
+app.use("/owner/",ownerRoutes.router);
 
 // Home route
 app.get("/",async(req,res)=>{
