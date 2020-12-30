@@ -1,6 +1,5 @@
 import express from "express";
 const router = express.Router();
-import util from "../helper/utils.js";
 
 import controller from "../controller/owner.js"
 
@@ -19,7 +18,7 @@ router.post(
 );
 
 router.get(
-    "login",
+    "/login",
 );
 
 
