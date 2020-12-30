@@ -19,8 +19,8 @@ const createOwnerPOST = async(req,res) => {
 };
 
 
-const confirmPassword = (req,res) =>{
-    res.send("Password sent")
+const confirmEmail = (req,res) =>{
+    res.render("email-confirmation")
 };
 
 
@@ -34,5 +34,5 @@ export default{
     createOwnerGET,
     createOwnerPOST,
     loginOwner,
-    confirmPassword,
+    confirmEmail,
 }

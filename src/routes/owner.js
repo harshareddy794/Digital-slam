@@ -21,7 +21,7 @@ router.get(
 
 router.get(
     "/confirm-email",
-    controller.confirmPassword,
+    controller.confirmEmail,
 );
 
 export default{
