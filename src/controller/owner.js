@@ -6,13 +6,21 @@ const createOwnerGET = async(req,res) => {
 
 
 const createOwnerPOST = async(req,res) => {
-    const result = await service.createOwner(req);
-    res.send(result);
+    try {
+        const result = await service.createOwner(req)
+        if(result){
+            res.send("Signup success")
+        }else{
+            throw new Error("Signup failed")
+        }
+    } catch (error) {
+        throw new Error(error);
+    }
 };
 
 const loginOwner = () => {
 
-}
+};
 
 
 export default{
