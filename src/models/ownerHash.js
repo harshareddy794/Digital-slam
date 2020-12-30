@@ -2,14 +2,14 @@ import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
     userId : {
-        type : Schema.Types.ObjectId,
+        type : String,
         required : true,
     },
     hash : String,
 });
 
-const ownerModel = mongoose.model("owner",schema);
+const ownerHashModel = mongoose.model("ownerhash",schema);
 
 export default{
-    ownerModel,
+    ownerHashModel
 }
