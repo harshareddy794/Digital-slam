@@ -1,6 +1,6 @@
 import service from "../service/owner.js";
 
-const createOwnerGET = async(req,res) => {
+const createOwnerGET = (req,res) => {
     res.render("signup");
 };
 
@@ -9,7 +9,7 @@ const createOwnerPOST = async(req,res) => {
     try {
         const result = await service.createOwner(req)
         if(result){
-            res.send("Signup success")
+            res.redirect("/owner/confirm-email")
         }else{
             throw new Error("Signup failed")
         }
@@ -17,6 +17,13 @@ const createOwnerPOST = async(req,res) => {
         throw new Error(error);
     }
 };
+
+
+const confirmPassword = (req,res) =>{
+    res.send("Password sent")
+};
+
+
 
 const loginOwner = () => {
 
@@ -27,4 +34,5 @@ export default{
     createOwnerGET,
     createOwnerPOST,
     loginOwner,
+    confirmPassword,
 }
