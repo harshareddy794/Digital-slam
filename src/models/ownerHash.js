@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
-    name : String,
-    email : {
-        type : String,
+    userId : {
+        type : Schema.Types.ObjectId,
         required : true,
     },
-    password : String,
+    hash : String,
 });
 
 const ownerModel = mongoose.model("owner",schema);
