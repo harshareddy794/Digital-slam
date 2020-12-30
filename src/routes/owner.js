@@ -1,11 +1,9 @@
+//  Imporing express router
 import express from "express";
 const router = express.Router();
 
-import controller from "../controller/owner.js"
-
-// import DOMPurify from 'dompurify';
-
-
+// Imporing controller
+import controller from "../controller/owner.js";
 
 router.get(
     "/signup",
@@ -21,6 +19,10 @@ router.get(
     "/login",
 );
 
+router.get(
+    "/confirm-email",
+    controller.confirmEmail,
+);
 
 export default{
     router,
