@@ -7,7 +7,7 @@ const createOwnerGET = (req,res) => {
 
 const createOwnerPOST = async(req,res) => {
     try {
-        const result = await service.createOwner(req)
+        const result = await service.createOwner(req);
         if(result){
             res.redirect("/owner/confirm-email")
         }else{

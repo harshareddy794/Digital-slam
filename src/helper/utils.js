@@ -5,7 +5,6 @@ const purifyDOM = async(data) => {
     return domPurify.sanitize(data);
 };
 
-
 // Function to send mail
 const sendMail = (options) => {
     try {
@@ -41,7 +40,7 @@ const sendMail = (options) => {
   // Function that generate unique id
   const generateUniqueId = () => {
     return Math.random().toString(36).substring(2);
-  };
+};
 
 export default{
     purifyDOM,
