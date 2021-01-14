@@ -14,6 +14,7 @@ const validateObjectSchema = (data, schema) => {
   return null;
 };
 
+
 const validateBody = (schema) => {
   return (req, res, next) => {
     let response = { ...constant.defaultServerResponse };
