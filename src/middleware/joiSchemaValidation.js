@@ -1,4 +1,5 @@
 // import constant from "../constants/index";
+import flash from "connect-flash";
 
 const validateObjectSchema = (data, schema) => {
   const validation = schema.validate(data, { convert: false });
@@ -14,13 +15,14 @@ const validateObjectSchema = (data, schema) => {
   return null;
 };
 
-const validateBody = (schema) => {
+const validateBody = (data,schema) => {
   return (req, res, next) => {
     try {
-      const error = validateObjectSchema(req.body, schema);
+      const error = validateObjectSchema(data, schema);
 // ----------------------------------- Have to change here for multiple validatiopn errors -------------------------
       if (error) {
-        throw new Error(error[0].error);
+        req.flash(error[0].error);
+        res.redirect("back");
       }
     } catch (error) {
       throw new Error(error);

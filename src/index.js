@@ -4,6 +4,8 @@ const app = express();
 import dotEnv from "dotenv";
 import bodyParser from "body-parser";
 import db from "./db/connection.js";
+import flash from "connect-flash";
+import cookieParser from "cookie-parser";
 
 // Middleware use
 app.use(express.static("public"))
@@ -11,8 +13,10 @@ app.set("view engine","ejs")
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json())
+// app.use(bodyParser.json())
 dotEnv.config();
+app.use(cookieParser())
+app.use(flash());
 
 // db Connectivity
 db.connection();
