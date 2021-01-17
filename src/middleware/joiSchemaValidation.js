@@ -1,4 +1,4 @@
-import constant from "../constants/index";
+// import constant from "../constants/index";
 
 const validateObjectSchema = (data, schema) => {
   const validation = schema.validate(data, { convert: false });
@@ -14,15 +14,16 @@ const validateObjectSchema = (data, schema) => {
   return null;
 };
 
-
 const validateBody = (schema) => {
   return (req, res, next) => {
-    let response = { ...constant.defaultServerResponse };
-    const error = validateObjectSchema(req.body, schema);
-    if (error) {
-      response.body = error;
-      response.message = constant.requestValidationMessage.BAD_REQUEST;
-      return res.status(response.status).send(response);
+    try {
+      const error = validateObjectSchema(req.body, schema);
+// ----------------------------------- Have to change here for multiple validatiopn errors -------------------------
+      if (error) {
+        throw new Error(error[0].error);
+      }
+    } catch (error) {
+      throw new Error(error);
     }
     return next();
   };
@@ -30,12 +31,13 @@ const validateBody = (schema) => {
 
 const validateQueryParams = (schema) => {
   return (req, res, next) => {
-    let response = { ...constant.defaultServerResponse };
-    const error = validateObjectSchema(req.query, schema);
-    if (error) {
-      response.body = error;
-      response.message = constant.requestValidationMessage.BAD_REQUEST;
-      return res.status(response.status).send(response);
+    try {
+      const error = validateObjectSchema(req.query, schema);
+      if (error) {
+        throw new Error(error);
+      }
+    } catch (error) {
+      throw new Error(error);
     }
     return next();
   };
