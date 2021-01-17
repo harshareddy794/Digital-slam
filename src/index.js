@@ -23,13 +23,16 @@ app.use(session({
     saveUninitialized :false,
     secret : "Hello",
 }));
-// app.use(sessions({
-//     secret:"Hello world",
-//     resave: false,
-//     saveUninitialized :false,
-//     cookie: { secure: true },
-// }))
 app.use(flash());
+
+// Middleware for flash
+app.use(function(req, res, next){
+    // res.locals.currentUser = req.user;
+    res.locals.error=req.flash("error")
+    res.locals.success= req.flash("success")
+    next();
+ });
+
 
 // db Connectivity
 db.connection();

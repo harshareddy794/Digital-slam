@@ -18,9 +18,9 @@ const validateObjectSchema = (data, schema) => {
 const validateBody = (data,schema) => {
   return (req, res, next) => {
       const error = validateObjectSchema(data, schema);
-// ----------------------------------- Have to change here for multiple validatiopn errors -------------------------
+// ----------------------------------- Have to change here for multiple validation errors -------------------------
       if (error) {
-        req.flash("success",error[0].error);
+        req.flash("error",error[0].error);
         res.redirect("back");
       }else{
         return next();
@@ -33,7 +33,8 @@ const validateQueryParams = (schema) => {
     try {
       const error = validateObjectSchema(req.query, schema);
       if (error) {
-        throw new Error(error);
+        req.flash("error",error[0].error);
+        res.redirect("back");
       }
     } catch (error) {
       throw new Error(error);
