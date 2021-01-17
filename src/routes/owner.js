@@ -11,7 +11,7 @@ import controller from "../controller/owner.js";
 import joivalidation from "../middleware/joiSchemaValidation.js"
 
 const data = {
-    "email" : "harshareddy794",
+    "email" : "harshareddy794@g.com",
 };
 
 const schema = joi.object({
