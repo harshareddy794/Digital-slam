@@ -7,11 +7,12 @@ const createOwnerGET = (req,res) => {
 
 const createOwnerPOST = async(req,res) => {
     try {
-        const result = await service.createOwner(req)
+        const result = await service.createOwner(req);
         if(result){
-            res.redirect("/owner/confirm-email")
+            req.flash("success","Successfully signed up and logged you in")
+            res.redirect("/owner/confirm-email");
         }else{
-            throw new Error("Signup failed")
+            throw new Error("Signup failed");
         }
     } catch (error) {
         throw new Error(error);

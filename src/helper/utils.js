@@ -1,3 +1,5 @@
+import nodemailer from "nodemailer";
+
 //  File for global function
 import domPurify from "dompurify";
 
@@ -5,43 +7,39 @@ const purifyDOM = async(data) => {
     return domPurify.sanitize(data);
 };
 
-
 // Function to send mail
-const sendMail = (options) => {
+const sendMail = async(options) => {
     try {
       var smtpTransport = nodemailer.createTransport({
         service: "Gmail",
         auth: {
           user: process.env.MAIL,
-          pass: process.env.MAILPASS || "Digifai2020",
+          pass: process.env.MAILPASS,
         },
       });
       var mailOptions = {
         to: options.email,
-        from: "digifai",
+        from: "Digital slam",
         subject: options.subject,
         text: options.body,
       };
-      smtpTransport.sendMail(mailOptions, (error) => {
+      await smtpTransport.sendMail(mailOptions, (error) => {
         if (error) {
           console.log("Some thing broke in sending email", error);
-          throw new Error(constants.tokenMessage.TOKEN_SENT_FAILED);
+          throw new Error("Token sending failed",error);
         }
       });
     } catch (error) {
-      console.log(
-        "Some thing broke :( - Service: on Creating user sending mail",
-        error
-      );
+      console.log("Some thing broke :( - Service: on Creating user sending mail",error);
       throw new Error(error);
     }
   };
   
   
-  // Function that generate unique id
-  const generateUniqueId = () => {
+// Function that generate unique id
+const generateUniqueId = () => {
     return Math.random().toString(36).substring(2);
-  };
+};
 
 export default{
     purifyDOM,
